@@ -1,3 +1,4 @@
+import { MoviesService } from './services/movies.service';
 import { Component } from '@angular/core';
 
 @Component({
@@ -6,5 +7,12 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'Vaidonna-Peliculas-StefaniaNicola';
+
+  public movies = []
+
+  constructor(private movieService : MoviesService){
+    this.movieService.getCartelera().subscribe( (movies)=>
+      this.movies = movies
+    )
+  }
 }
